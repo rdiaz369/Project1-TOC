@@ -58,7 +58,7 @@ Instance_ID,Num_Vertices,Num_Edges,Hamiltonian_Path,Hamiltonian_Cycle,Largest_Cy
 """
 
 import itertools
-from typing import List, Tuple
+from typing import List, Tuple, Set, Dict
 
 from src.helpers.hamilton_cycle_helper import HamiltonCycleAbstractClass
 
@@ -72,6 +72,16 @@ class HamiltonCycleColoring(HamiltonCycleAbstractClass):
     of the CSV file just focus on the logic
     """
 
+    #Make a new helper method to construct an unweighted adjacency set
+    def _build_adj_set(self, vertices: Set[int], edges: List[Tuple[int]]) -> Dict[int, Set[int]]:
+        
+        adj_set = {v: set() for v in vertices}
+        #here the edges willb be in unweighted tuples (u,v)
+        for u, v in edges:
+            if u in adj_set and v in adj_set:
+                adj_set[u].add(v)
+                adj_set[v].add(u)
+        return adj_set
 
     def hamilton_backtracking(
         self, vertices: set, edges: List[Tuple[int]]
