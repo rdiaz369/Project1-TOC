@@ -112,18 +112,19 @@ class HamiltonCycleColoring(HamiltonCycleAbstractClass):
                     if not self.found_cycle: #store first one found
                         self.found_cycle = path+[path[0]]
             
-
             #check for the hamPATH
+            if len(path) ==n: 
+                if not self.found_path: #store first path
+                    self.found_path= path[:]
 
 
 
-            path.pop(curent()) #recurive stuff 
+            path.pop(current()) #recurive stuff 
+
+            #backtracking --> need to pop
+
+            #return statement
         
-
-    
-
-
-
     
 
     def hamilton_bruteforce(
