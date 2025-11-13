@@ -92,7 +92,41 @@ class HamiltonCycleColoring(HamiltonCycleAbstractClass):
     def hamilton_bruteforce(
         self, vertices: set, edges: List[Tuple[int]]
     ) -> Tuple[bool, List[int], bool, List[int], int]:
-        pass
+        
+        adj_set = self._build_adj_set(vertices, edges)
+        n = len(vertices)
+        
+        found_path = None
+        found_cycle = None
+        largest_cycle_size = 0 #this would be our best case 
+        
+        #
+        for p in itertools.permutations(sorted(list(vertices))): #go through all permutaions
+            is_path = True
+            #lets checkk if its a valid path
+            for i in range(n-1):
+                if p[i+1] not in adj_set[p[i]]:
+                    is_path = False
+                    break
+            
+            
+            if is_path: #then we have found our Hamiltonian Path
+                if not found_path:
+                    found_path = list(p)
+                    
+                # next we need to check if the path is also a cycle
+                if p[0] in adj_set[p[-1]]:
+                    found_cycle = list(p) + [p[0]]
+                    largest_cycle_size = n #if it reaches the start then it is the largest
+                    return (True, found_path, True, found_cycle, largest_cycle_size) # if we found both we can return early
+                
+        # need if statement for whren we finish the loop and found a path, but no cycle
+        if found_path and not found_cycle: #heere we must have found the best case for unwieghted
+            
+            return (True, found_path, False, None, 0)
+        
+        #NO PATH or cycle found
+        return (False, None, False, None, 0)
 
     def hamilton_simple(
         self, vertices: set, edges: List[Tuple[int]]
