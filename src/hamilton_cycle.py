@@ -152,14 +152,10 @@ class HamiltonCycleColoring(HamiltonCycleAbstractClass):
 
     def hamilton_simple(
         self, vertices: set, edges: List[Tuple[int]]
-    ) -> Tuple[bool, List[int], bool, List[int], int]:
-        pass
+    ) -> Tuple[bool, List[int], bool, List[int], int]: return (False, None,False,None,0)         #skip this, we didnt implement it
 
     def hamilton_bestcase(
         self, vertices: set, edges: List[Tuple[int]]
     ) -> Tuple[bool, List[int], bool, List[int], int]:
         pass
     
-
-
-if __name__ == "__main__":
