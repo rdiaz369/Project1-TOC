@@ -34,6 +34,24 @@ e 3 6
 e 4 6
 
 c INSTANCE 4
+p edge 6 7
+e 1 2
+e 2 3
+e 3 4
+e 4 5
+e 5 6
+e 1 6
+e 2 5
+
+c INSTANCE 5
+p edge 6 5
+e 1 2
+e 2 3
+e 3 4
+e 4 5
+e 5 6
+
+c INSTANCE 6
 p edge 7 10
 e 1 2
 e 1 4
@@ -46,7 +64,7 @@ e 4 5
 e 5 7
 e 6 7
 
-c INSTANCE 5
+c INSTANCE 7
 p edge 7 12
 e 1 2
 e 1 3
@@ -61,75 +79,7 @@ e 5 6
 e 5 7
 e 6 7
 
-c INSTANCE 6
-p edge 8 12
-e 1 2
-e 1 4
-e 1 8
-e 2 3
-e 2 7
-e 3 5
-e 3 6
-e 4 5
-e 4 7
-e 5 8
-e 6 7
-e 6 8
-
-c INSTANCE 7
-p edge 8 14
-e 1 2
-e 1 3
-e 1 6
-e 2 4
-e 2 7
-e 3 4
-e 3 5
-e 4 6
-e 4 8
-e 5 6
-e 5 7
-e 6 7
-e 7 8
-e 5 8
-
 c INSTANCE 8
-p edge 9 15
-e 1 2
-e 1 5
-e 1 9
-e 2 3
-e 2 6
-e 3 4
-e 3 7
-e 4 8
-e 4 9
-e 5 6
-e 5 8
-e 6 7
-e 6 9
-e 7 8
-e 8 9
-
-c INSTANCE 9
-p edge 6 7
-e 1 2
-e 2 3
-e 3 4
-e 4 5
-e 5 6
-e 1 6
-e 2 5
-
-c INSTANCE 10
-p edge 6 5
-e 1 2
-e 2 3
-e 3 4
-e 4 5
-e 5 6
-
-c INSTANCE 11
 p edge 7 16
 e 1 2
 e 1 3
@@ -148,7 +98,7 @@ e 6 7
 e 1 6
 e 4 6
 
-c INSTANCE 12
+c INSTANCE 9
 p edge 7 8
 e 1 2
 e 2 3
@@ -159,7 +109,40 @@ e 6 7
 e 1 7
 e 2 6
 
-c INSTANCE 13
+c INSTANCE 10
+p edge 8 12
+e 1 2
+e 1 4
+e 1 8
+e 2 3
+e 2 7
+e 3 5
+e 3 6
+e 4 5
+e 4 7
+e 5 8
+e 6 7
+e 6 8
+
+c INSTANCE 11
+p edge 8 14
+e 1 2
+e 1 3
+e 1 6
+e 2 4
+e 2 7
+e 3 4
+e 3 5
+e 4 6
+e 4 8
+e 5 6
+e 5 7
+e 6 7
+e 7 8
+e 5 8
+
+
+c INSTANCE 12
 p edge 8 10
 e 1 2
 e 2 5
@@ -172,7 +155,7 @@ e 3 6
 e 6 7
 e 2 4
 
-c INSTANCE 14
+c INSTANCE 13
 p edge 8 20
 e 1 2
 e 1 3
@@ -195,6 +178,24 @@ e 3 8
 e 4 5
 e 7 8
 
+c INSTANCE 14
+p edge 9 15
+e 1 2
+e 1 5
+e 1 9
+e 2 3
+e 2 6
+e 3 4
+e 3 7
+e 4 8
+e 4 9
+e 5 6
+e 5 8
+e 6 7
+e 6 9
+e 7 8
+e 8 9
+
 c INSTANCE 15
 p edge 9 11
 e 1 2
@@ -210,6 +211,20 @@ e 1 9
 e 3 6
 
 c INSTANCE 16
+p edge 9 10
+e 1 4
+e 1 6
+e 2 3
+e 2 7
+e 3 5
+e 4 8
+e 5 9
+e 6 7
+e 7 8
+e 8 9
+
+
+c INSTANCE 17
 p edge 10 15
 e 1 2
 e 2 3
@@ -227,18 +242,6 @@ e 4 7
 e 5 6
 e 1 5
 
-c INSTANCE 17
-p edge 9 10
-e 1 4
-e 1 6
-e 2 3
-e 2 7
-e 3 5
-e 4 8
-e 5 9
-e 6 7
-e 7 8
-e 8 9
 
 c INSTANCE 18
 p edge 10 14
