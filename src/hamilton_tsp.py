@@ -113,3 +113,105 @@ def tsp_bruteforce(
             best_cycle = [start_node] + list(p) + [start_node]
 
     return min_weight, best_cycle #return bruteforce results
+
+
+# Use global vars for the recursive backtracking function
+min_weight_global = float('inf')
+best_cycle_global = None
+adj_list_global = {}
+num_vertices_global = 0
+start_node_global = 1
+
+def _tsp_backtracking_recursive(current_node: int, current_weight: float, path: List[int]):
+    #Recursive helper for the backtracking solver
+    
+    global min_weight_global, best_cycle_global
+    
+    # This where we ant to implemnent pruning
+    if current_weight >= min_weight_global:
+        return
+
+    #Base Case
+    if len(path) == num_vertices_global:
+        if start_node_global in adj_list_global[current_node]:
+            final_weight = current_weight + adj_list_global[current_node][start_node_global]
+            
+            if final_weight < min_weight_global:
+                min_weight_global = final_weight
+                best_cycle_global = path + [start_node_global]
+        return
+
+    #use recursion to explore nearest neighbors
+    for neighbor, weight in adj_list_global[current_node].items():
+        if neighbor not in path:
+            path.append(neighbor) # Add to path
+            _tsp_backtracking_recursive( 
+                current_node=neighbor,
+                current_weight=current_weight + weight,
+                path=path
+            )
+            path.pop() # Backtrack
+
+def tsp_backtracking(
+    vertices: Set[int], edges: List[Tuple[int, int, int]]
+) -> Tuple[float, List[int]]:
+    #Solves TSP using backtracking with pruning.
+    
+    global min_weight_global, best_cycle_global, adj_list_global
+    global num_vertices_global, start_node_global
+    
+    # Reset global state for this run
+    adj_list_global = _build_adj_list(vertices, edges)
+    num_vertices_global = len(vertices)
+    min_weight_global = float('inf')
+    best_cycle_global = None
+    start_node_global = 1
+    
+    # Start the recursive search
+    _tsp_backtracking_recursive(start_node_global, 0, [start_node_global])
+    
+    return min_weight_global, best_cycle_global
+
+#main
+if __name__ == "__main__":
+    
+    #set path name to read cnf file from input
+    INPUT_FILE = 'input/hamilton_input_weighted.cnf'
+    
+    graphs = parse_weighted_graph_file(INPUT_FILE)
+    
+    if not graphs:
+        print(f"No graphs found or file could not be read from {INPUT_FILE}")
+    else:
+        print(f"--- Solving TSP for {len(graphs)} instances ---")
+        
+        for graph in graphs:
+            print(f"\n=== Instance {graph['id']} ===")
+            vertices = graph['vertices']
+            edges = graph['edges']
+            
+            #Run Brute Force
+            print("Running Brute Force...")
+            t0 = time.perf_counter()
+            bf_weight, bf_cycle = tsp_bruteforce(vertices, edges)
+            bf_time = time.perf_counter() - t0
+            
+            if bf_cycle:
+                print(f"  [Brute Force]   Found cycle: {bf_cycle}")
+                print(f"  [Brute Force]   Min Weight:  {bf_weight}")
+            else:
+                print("  [Brute Force]   No cycle found.")
+            print(f"  [Brute Force]   Time: {bf_time:.6f}s")
+            
+            #Run Backtracking
+            print("Running Backtracking...")
+            t0 = time.perf_counter()
+            bt_weight, bt_cycle = tsp_backtracking(vertices, edges)
+            bt_time = time.perf_counter() - t0
+            
+            if bt_cycle:
+                print(f"  [Backtracking]  Found cycle: {bt_cycle}")
+                print(f"  [Backtracking]  Min Weight:  {bt_weight}")
+            else:
+                print("  [Backtracking]  No cycle found.")
+            print(f"  [Backtracking]  Time: {bt_time:.6f}s")
